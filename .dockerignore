@@ -17,5 +17,11 @@
 !/uwsgi.ini
 !/version.txt
 
+# Configuración del contenedor para el alojamiento académico en Render
+!/deploy
+!/deploy/render.Dockerfile
+!/deploy/render_settings.py
+!/deploy/start-render.sh
+
  # Remove dev settings
 /bookmarks/settings/dev.py
