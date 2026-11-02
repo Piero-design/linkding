@@ -1,4 +1,4 @@
-"""Ajustes del despliegue académico gratuito de Linkding en Render y Neon.
+"""Ajustes del despliegue académico gratuito de Linkding en Render.
 
 Solo configura el alojamiento; no cambia las funciones del producto.
 """
@@ -9,7 +9,7 @@ from urllib.parse import parse_qs, unquote, urlparse
 def database_config(connection_url):
     parsed = urlparse(connection_url)
     if parsed.scheme not in {'postgres', 'postgresql'}:
-        raise RuntimeError('DATABASE_URL debe ser una conexión PostgreSQL de Neon.')
+        raise RuntimeError('DATABASE_URL debe ser una conexión PostgreSQL.')
     if not all([parsed.hostname, parsed.username, parsed.password, parsed.path.strip('/')]):
         raise RuntimeError('DATABASE_URL está incompleta. Revisar su valor en Render.')
     options = parse_qs(parsed.query)
@@ -53,7 +53,7 @@ SECURE_HSTS_SECONDS = 3600
 DEBUG = False
 
 # El plan gratuito no conserva archivos locales tras reinicios.
-# Las cuentas, los marcadores, las notas y las etiquetas permanecen en Neon.
+# Las cuentas, los marcadores, las notas y las etiquetas permanecen en PostgreSQL mientras la base esté vigente.
 LD_DISABLE_BACKGROUND_TASKS = True
 LD_ENABLE_REFRESH_FAVICONS = False
 LD_ENABLE_SNAPSHOTS = False

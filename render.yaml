@@ -11,7 +11,9 @@ services:
     autoDeployTrigger: 'off'
     envVars:
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: linkding-calidad-db
+          property: connectionString
       - key: LINKDING_SECRET_KEY
         generateValue: true
       - key: LD_SUPERUSER_NAME
