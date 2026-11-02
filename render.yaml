@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: linkding-calidad-piero
+    runtime: docker
+    plan: free
+    region: oregon
+    branch: evaluacion-render-gratuito
+    dockerfilePath: ./deploy/render.Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: 'off'
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: LINKDING_SECRET_KEY
+        generateValue: true
+      - key: LD_SUPERUSER_NAME
+        value: evaluador
+      - key: LD_SUPERUSER_PASSWORD
+        generateValue: true
+      - key: LD_DB_ENGINE
+        value: postgres
+      - key: DJANGO_SETTINGS_MODULE
+        value: bookmarks.settings.prod
+      - key: LD_DISABLE_BACKGROUND_TASKS
+        value: 'True'
+      - key: PORT
+        value: '10000'
+      - key: TZ
+        value: America/Lima
